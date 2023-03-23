@@ -15,14 +15,14 @@ jobs:
     steps:
       # - name: Checkout and Node
       - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+        with:
+          version: latest
+          # run_install: true
       - uses: actions/setup-node@v3
         with:
           node-version: '>=18'
           cache: 'pnpm'
-      # - uses: pnpm/action-setup@v2
-        # with:
-        #   run_install: true
-        #   version: latest
       - run: pnpm exec playwright install --with-deps
       - run: pnpm run test:e2e
   deploy:
