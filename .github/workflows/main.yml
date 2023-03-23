@@ -31,6 +31,6 @@ jobs:
     steps:
       # - name: Checkout and Wrangler
       - uses: actions/checkout@v3
-      - uses: cloudflare/wrangler-action@latest
+      - uses: cloudflare/wrangler-action
         with:
           apiToken: ${{ secrets.CLOUDFLARE_WORKERS }}
