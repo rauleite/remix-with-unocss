@@ -8,6 +8,7 @@
     "dev:miniflare": "cross-env NODE_ENV=development miniflare ./build/index.js --watch",
     "dev": "npm-run-all build --parallel \"dev:*\"",
     "start": "cross-env NODE_ENV=production miniflare ./build/index.js",
+    "test:e2e": "playwright test",
     "typecheck": "tsc"
   },
   "dependencies": {
@@ -21,8 +22,10 @@
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^3.18.0",
+    "@playwright/test": "^1.32.0",
     "@remix-run/dev": "^1.14.3",
     "@remix-run/eslint-config": "^1.14.3",
+    "@types/node": "^18.15.5",
     "@types/react": "^18.0.25",
     "@types/react-dom": "^18.0.8",
     "eslint": "^8.27.0",
