@@ -23,6 +23,8 @@ jobs:
         with:
           node-version: '>=18'
           cache: 'pnpm'
+      - run: pnpm -v
+      - run: node -v
       - run: pnpm exec playwright install --with-deps
       - run: pnpm run test:e2e
   deploy:
