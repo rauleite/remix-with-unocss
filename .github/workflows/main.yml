@@ -15,7 +15,7 @@ jobs:
     steps:
       # - name: Checkout and Node
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      # - uses: actions/setup-node@v3
         with:
           node-version: '>=16.13'
       - uses: pnpm/action-setup@v2
@@ -31,6 +31,7 @@ jobs:
     steps:
       # - name: Checkout and Wrangler
       - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
       - uses: cloudflare/wrangler-action@2.0.0
         with:
           apiToken: ${{ secrets.CLOUDFLARE_WORKERS }}

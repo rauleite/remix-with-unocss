@@ -14,6 +14,7 @@
 - DO (maybe)
 #### Testing 
 - Playwright
+- Github Actions
 
 ## Development
 
