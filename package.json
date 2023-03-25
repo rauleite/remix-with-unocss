@@ -9,9 +9,11 @@
     "dev": "dotenv -- turbo run dev",
     "start": "dotenv -- turbo run start",
     "test:e2e": "dotenv -- turbo run test:e2e",
+    "deploy": "dotenv -- turbo run deploy",
     "lint": "turbo run lint",
     "clean": "turbo run clean",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "log": "dotenv -- turbo run log"
   },
   "devDependencies": {
     "dotenv-cli": "^7.1.0",

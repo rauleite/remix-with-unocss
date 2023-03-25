@@ -15,6 +15,7 @@
     "start": "cross-env NODE_ENV=production miniflare ./build/index.js",
     "test:e2e": "playwright test",
     "typecheck": "tsc",
+    "log": "pnpm run '/^log:.*/'",
     "log:deploy": "wrangler tail"
   },
   "dependencies": {
