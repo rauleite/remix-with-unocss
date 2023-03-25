@@ -82,3 +82,13 @@ You can add more presets in [`unocss.config.ts`](./unocss.config.ts).
 
 - [UnoCSS GitHub](https://github.com/unocss/unocss)
 - [UnoCSS Docs](https://uno.antfu.me)
+
+# Throbleshooting
+## End of Space 
+Error: ENOSPC: System limit for number of file watchers reached, watch '/home/raul/dev/remix/apps/remix/unocss.config.ts'
+
+```bash
+echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+```
+P.S. The ideal is to investigate the cause (probabily some watch mode reading the node_modules, and should be set to igore it)
+
