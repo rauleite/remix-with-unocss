@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "sideEffects": false,
   "scripts": {
-    "build": "concurrently --group 'npm:build:*'",
+    "build": "npx concurrently --group 'npm:build:*'",
     "build:css": "npm run generate:css",
     "build:remix": "remix build",
     "deploy": "wrangler publish",
