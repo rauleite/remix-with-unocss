@@ -9,5 +9,10 @@ compatibility_flags = ["streams_enable_constructors"]
 [site]
   bucket = "./public"
 
+[env.production]
+  # setted by Github Action (./github/worflows/main.yml) 
+  path="./pnpm/bin"
+
 [build]
-  command = "npm run build"
+  command = "pnpm run build"
+

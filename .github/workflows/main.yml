@@ -35,6 +35,7 @@ jobs:
       - uses: pnpm/action-setup@v2
         with:
           # run_install: true
+          dest: ./pnpm
           version: latest
       - name: Install deps
         run: pnpm install
@@ -47,4 +48,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_WORKERS }}
           command: publish ./apps/remix/wrangler.toml 
-          # environment: "production"
+          environment: "production"
