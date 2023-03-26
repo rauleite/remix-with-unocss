@@ -41,6 +41,13 @@ jobs:
       - name: Path
         run: pwd
 
+      - name: cd
+        run: cd apps/remix
+
+      - name: Path post
+        run: pwd
+
+
       - name: List
         run: ls
 
