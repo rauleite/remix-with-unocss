@@ -11,6 +11,7 @@ compatibility_flags = ["streams_enable_constructors"]
 
 [env.production]
   # setted by Github Action (./github/worflows/main.yml) 
+  command="npm install --prefix=./pnpm"
   path="./pnpm/bin"
 
 [build]
