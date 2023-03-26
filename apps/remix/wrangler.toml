@@ -1,7 +1,7 @@
 name = "remix"
 
 workers_dev = true
-main = "./build/index.js"
+main = "./apps/remix/build/index.js"
 compatibility_date = "2023-03-26"
  
 # Default as of	2022-11-30
@@ -9,7 +9,7 @@ compatibility_date = "2023-03-26"
 # compatibility_flags = ["streams_enable_constructors"]
 
 [site]
-  bucket = "./public"
+  bucket = "./apps/remix/public"
 
 [build]
   command = "npm run build"
