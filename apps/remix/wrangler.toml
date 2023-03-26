@@ -14,5 +14,5 @@ compatibility_flags = ["streams_enable_constructors"]
   path="./pnpm/bin"
 
 [build]
-  command = "pnpm run build"
+  command = "which pnpm && pnpm run build"
 
