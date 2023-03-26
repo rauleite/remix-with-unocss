@@ -26,7 +26,7 @@ jobs:
       - run: pnpm -v
       - run: node -v
       - run: pnpm install
-      - run: pnpm exec playwright install --with-deps
+      - run: pnpm dlx playwright install --with-deps
       - run: pnpm run test
   deploy:
     needs: tests_e2e
