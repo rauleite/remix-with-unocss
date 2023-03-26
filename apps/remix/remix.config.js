@@ -13,5 +13,5 @@ module.exports = {
   // assetsBuildDirectory: "public/build",
   // serverBuildPath: "build/index.js",
   // publicPath: "/build/",
-  // watchPaths: ["./app/styles/uno.css"]
+  watchPaths: ["./app/styles/uno.css"]
 };
