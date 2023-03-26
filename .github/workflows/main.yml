@@ -45,7 +45,8 @@ jobs:
         run: ls
 
       - name: Install only the remix workspace
-        run: npm --workspace=remix install
+        # run: npm --workspace=remix install
+        run: npm --workspace=remix ci --production --no-optional
 
       # - name: Move Remix app to Root
       #   run: mv apps/remix .. && cd ..
