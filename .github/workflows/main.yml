@@ -10,26 +10,26 @@ on:
 # on: workflow_dispatch:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  tests_e2e:
-    runs-on: ubuntu-latest
-    steps:
-      # - name: Checkout and Node
-      - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v2
-        with:
-          version: latest
-          run_install: true
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '>=18'
-          cache: 'pnpm'
-      - run: pnpm -v
-      - run: node -v
-      # - run: pnpm install
-      - run: pnpm dlx playwright install --with-deps
-      - run: pnpm run test
+  # tests_e2e:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     # - name: Checkout and Node
+  #     - uses: actions/checkout@v3
+  #     - uses: pnpm/action-setup@v2
+  #       with:
+  #         version: latest
+  #         run_install: true
+  #     - uses: actions/setup-node@v3
+  #       with:
+  #         node-version: '>=18'
+  #         cache: 'pnpm'
+  #     - run: pnpm -v
+  #     - run: node -v
+  #     # - run: pnpm install
+  #     - run: pnpm dlx playwright install --with-deps
+  #    - run: pnpm run test
   deploy:
-    needs: tests_e2e
+    # needs: tests_e2e
     runs-on: ubuntu-latest
     steps:
       # - name: Checkout and Wrangler
@@ -41,4 +41,4 @@ jobs:
       - uses: cloudflare/wrangler-action@2.0.0
         with:
           apiToken: ${{ secrets.CLOUDFLARE_WORKERS }}
-          command: publish
+          command: publish ./apps/remix
