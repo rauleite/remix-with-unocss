@@ -10,7 +10,7 @@
     "dev": "pnpm run '/^dev:.*/'",
     "dev:css": "pnpm run generate:css --watch",
     "dev:remix": "pnpm exec remix watch",
-    "dev:miniflare": "cross-env NODE_ENV=development miniflare ./build/index.js --watch",
+    "dev:miniflare": "cross-env NODE_ENV=development miniflare ./build/index.js --live-reload",
     "generate:css": "unocss './app/**/*.{js,ts,jsx,tsx}' -o ./app/styles/uno.css",
     "start": "cross-env NODE_ENV=production miniflare ./build/index.js",
     "test": "playwright test",
