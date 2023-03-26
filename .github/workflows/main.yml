@@ -42,3 +42,5 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_WORKERS }}
           # command: publish ./apps/remix/wrangler.toml 
           # environment: "production"
+      - name: Publishing
+        run: wrangler publish
