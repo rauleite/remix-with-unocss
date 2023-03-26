@@ -9,8 +9,9 @@ compatibility_flags = ["streams_enable_constructors"]
 [site]
   bucket = "./public"
 
-[build.production]
-  command="npm install -g pnpm && pnpm install && pnpm run build"
+[env.production]
+  [build]
+    command="npm run build"
   # path="./pnpm/bin"
 
 [build]
