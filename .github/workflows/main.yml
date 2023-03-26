@@ -35,8 +35,15 @@ jobs:
         with:
           node-version: '>=18'
           cache: 'npm'
-      - name: Install deps
-        run: npm install
+      # - name: Install deps
+      #   run: npm install
+
+      - name: Path
+        run: pwd
+
+      # - name: Move Remix app to Root
+      #   run: mv apps/remix .. && cd ..
+
       - uses: cloudflare/wrangler-action@2.0.0
         with:
           apiToken: ${{ secrets.CLOUDFLARE_WORKERS }}
