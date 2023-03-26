@@ -1,21 +1,22 @@
 {
   "private": true,
   "name": "remix",
+  "version": "0.0.1",
   "sideEffects": false,
   "scripts": {
-    "build": "pnpm run '/^build:.*/'",
-    "build:css": "pnpm run generate:css",
-    "build:remix": "pnpm exec remix build",
-    "deploy": "pnpm exec wrangler publish",
-    "dev": "pnpm run '/^dev:.*/'",
-    "dev:css": "pnpm run generate:css --watch",
-    "dev:remix": "pnpm exec remix watch",
-    "dev:miniflare": "cross-env NODE_ENV=development miniflare ./build/index.js --live-reload",
+    "build": "concurrently --group 'npm:build:*'",
+    "build:css": "npm run generate:css",
+    "build:remix": "remix build",
+    "deploy": "wrangler publish",
+    "dev": "concurrently 'npm:dev:*'",
+    "dev:css": "npm run generate:css --watch",
+    "dev:remix": "remix watch",
+    "dev:miniflare": "cross-env NODE_ENV=development miniflare ./build/index.js --watch",
     "generate:css": "unocss './app/**/*.{js,ts,jsx,tsx}' -o ./app/styles/uno.css",
     "start": "cross-env NODE_ENV=production miniflare ./build/index.js",
     "test": "playwright test",
     "typecheck": "tsc",
-    "log": "pnpm run '/^log:.*/'",
+    "log": "npm run '/^log:.*/'",
     "log:deploy": "wrangler tail"
   },
   "dependencies": {
@@ -49,6 +50,6 @@
   },
   "engines": {
     "node": ">=18",
-    "pnpm": ">=6"
+    "npm": ">=9"
   }
 }
