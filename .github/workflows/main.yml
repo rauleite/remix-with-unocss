@@ -41,11 +41,14 @@ jobs:
       - name: Path
         run: pwd
 
+      - name: List
+        run: ls
+
       # - name: Move Remix app to Root
       #   run: mv apps/remix .. && cd ..
 
-      - uses: cloudflare/wrangler-action@2.0.0
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_WORKERS }}
-          command: publish ./apps/remix/wrangler.toml 
-          # environment: "production"
+      # - uses: cloudflare/wrangler-action@2.0.0
+      #   with:
+      #     apiToken: ${{ secrets.CLOUDFLARE_WORKERS }}
+      #     command: publish ./apps/remix/wrangler.toml 
+      #     # environment: "production"
