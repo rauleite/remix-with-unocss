@@ -11,4 +11,3 @@ compatibility_flags = ["streams_enable_constructors"]
 
 [build]
   command = "pnpm run build"
-
