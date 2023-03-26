@@ -12,7 +12,7 @@
     "dev:css": "npm run generate:css --watch",
     "dev:remix": "remix watch",
     "dev:miniflare": "cross-env NODE_ENV=development miniflare ./build/index.js --watch",
-    "generate:css": "unocss './app/**/*.{js,ts,jsx,tsx}' -o ./app/styles/uno.css",
+    "generate:css": "npx unocss './app/**/*.{js,ts,jsx,tsx}' -o ./app/styles/uno.css",
     "start": "cross-env NODE_ENV=production miniflare ./build/index.js",
     "test": "playwright test",
     "typecheck": "tsc",
@@ -26,8 +26,7 @@
     "cross-env": "^7.0.3",
     "isbot": "^3.6.7",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "concurrently": "^7.6.0"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20230321.0",
@@ -39,6 +38,7 @@
     "@types/react-dom": "^18.0.11",
     "@unocss/cli": "^0.50.6",
     "@unocss/reset": "^0.50.6",
+    "concurrently": "^7.6.0",
     "eslint": "^8.36.0",
     "miniflare": "^2.13.0",
     "npm-run-all": "^4.1.5",
