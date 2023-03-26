@@ -25,7 +25,7 @@ jobs:
           cache: 'pnpm'
       - run: pnpm -v
       - run: node -v
-      - run: pnpm install
+      # - run: pnpm install
       - run: pnpm dlx playwright install --with-deps
       - run: pnpm run test
   deploy:
@@ -41,3 +41,4 @@ jobs:
       - uses: cloudflare/wrangler-action@2.0.0
         with:
           apiToken: ${{ secrets.CLOUDFLARE_WORKERS }}
+          command: pnpm run deploy
