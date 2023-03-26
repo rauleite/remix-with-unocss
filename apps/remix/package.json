@@ -6,7 +6,7 @@
   "scripts": {
     "build": "npx concurrently --group 'npm:build:*'",
     "build:css": "npm run generate:css",
-    "build:remix": "remix build",
+    "build:remix": "npx remix build",
     "deploy": "wrangler publish",
     "dev": "concurrently 'npm:dev:*'",
     "dev:css": "npm run generate:css --watch",
