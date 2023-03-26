@@ -5,15 +5,15 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "dotenv turbo run build",
-    "dev": "dotenv -- turbo run dev",
-    "start": "dotenv -- turbo run start",
-    "test": "dotenv -- turbo run test",
-    "deploy": "dotenv -- turbo run deploy",
+    "build": "turbo run build",
+    "dev": "FORCE_COLOR=1 turbo run dev",
+    "start": "FORCE_COLOR=1 turbo run start",
+    "test": "FORCE_COLOR=1 turbo run test",
+    "deploy": "FORCE_COLOR=1 turbo run deploy",
     "lint": "turbo run lint",
     "clean": "turbo run clean",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "log": "dotenv -- turbo run log"
+    "log": "FORCE_COLOR=1 turbo run log"
   },
   "devDependencies": {
     "dotenv-cli": "^7.1.0",
