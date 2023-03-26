@@ -8,7 +8,7 @@
     "build": "dotenv turbo run build",
     "dev": "dotenv -- turbo run dev",
     "start": "dotenv -- turbo run start",
-    "test:e2e": "dotenv -- turbo run test:e2e",
+    "test": "dotenv -- turbo run test",
     "deploy": "dotenv -- turbo run deploy",
     "lint": "turbo run lint",
     "clean": "turbo run clean",

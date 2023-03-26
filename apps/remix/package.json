@@ -13,7 +13,7 @@
     "dev:miniflare": "cross-env NODE_ENV=development miniflare ./build/index.js --watch",
     "generate:css": "unocss './app/**/*.{js,ts,jsx,tsx}' -o ./app/styles/uno.css",
     "start": "cross-env NODE_ENV=production miniflare ./build/index.js",
-    "test:e2e": "playwright test",
+    "test": "playwright test",
     "typecheck": "tsc",
     "log": "pnpm run '/^log:.*/'",
     "log:deploy": "wrangler tail"
