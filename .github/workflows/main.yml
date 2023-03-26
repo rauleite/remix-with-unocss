@@ -42,8 +42,9 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '>=18'
-          # cache: 'pnpm'
+          cache: 'pnpm'
       - uses: cloudflare/wrangler-action@2.0.0
         with:
           apiToken: ${{ secrets.CLOUDFLARE_WORKERS }}
-          command: publish ./apps/remix/wrangler.toml --env production
+          command: publish ./apps/remix/wrangler.toml 
+          # environment: "production"
