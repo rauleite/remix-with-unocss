@@ -10,4 +10,4 @@ compatibility_flags = ["streams_enable_constructors"]
   bucket = "./public"
 
 [build]
-  command = "npm run build"
+  command = "pnpm run build"
