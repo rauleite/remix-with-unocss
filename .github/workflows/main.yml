@@ -30,6 +30,7 @@ jobs:
     # needs: tests_e2e
     env:
       NODE_V: 16.19.1
+      PROJECT_NAME: remix
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -78,9 +79,9 @@ jobs:
       # - name: List
       #   run: ls -lha
 
-      - name: Install only the remix workspace
+      - name: Install ${{ env.PROJECT_NAME }} workspace
         # run: npm --workspace=remix install
-        run: npm ci --workspace=remix --omit=dev 
+        run: npm ci --workspace=${{ env.PROJECT_NAME }} --omit=dev 
         # run: npm install --omit=dev 
 
       # - name: Move Remix app to Root
@@ -93,6 +94,5 @@ jobs:
           # preCommands: npm ci --workspace=remix --omit=dev
           # preCommands: npm install --workspace=remix --omit=dev
           # command: publish ./wrangler.toml 
-          postCommands: node -v
-          workingDirectory: './apps/remix'
+          workingDirectory: './apps/${{ env.PROJECT_NAME }}'
           # environment: "production"
