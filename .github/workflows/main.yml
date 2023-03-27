@@ -48,14 +48,14 @@ jobs:
 
       - name: Install to workspace
         # run: npm ci --workspace=${{ env.NAME }}
-        run: npm ci --workspace=${{ NAME }}
+        run: npm ci --workspace=$NAME
         # run: npm ci --workspace=${{ env.NAME }} --omit=dev 
         # run: npm --workspace=remix install
         # run: npm install --omit=dev 
 
       - name: Build 
         # run: npm run build --workspace=${{ env.NAME }}
-        run: npm run build --workspace=${{ NAME }}
+        run: npm run build --workspace=$NAME
  
       # - name: Move Remix app to Root
       #   run: mv apps/remix .. && cd ..
@@ -68,5 +68,5 @@ jobs:
           # preCommands: npm install --workspace=remix --omit=dev
           # command: publish ./wrangler.toml 
           # workingDirectory: './apps/${{ env.NAME }}'
-          workingDirectory: './apps/${{ NAME }}'
+          workingDirectory: './apps/$NAME'
           # environment: "production"
