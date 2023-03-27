@@ -62,6 +62,15 @@ jobs:
       - name: List
         run: ls
 
+      - name: Remove residual app dir
+        run: rm -r apps
+
+      - name: Path
+        run: pwd
+
+      - name: List
+        run: ls
+
       - name: Install only the remix workspace
         # run: npm --workspace=remix install
         # run: npm --workspace=remix ci --omit=dev 
