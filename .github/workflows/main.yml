@@ -12,13 +12,14 @@ on:
 jobs:
   tests_e2e:
     env:
+      # Match with Cloudflare Workers Node version
       NODE_V: 16.19.1
       NAME: remix
     runs-on: ubuntu-latest
     steps:
       # - name: Checkout and Node
       - uses: actions/checkout@v3
-      # - uses: pnpm/action-setup@v2
+      # - uses: npm/action-setup@v2
       #   with:
       #     version: latest
       #     run_install: true
@@ -27,7 +28,7 @@ jobs:
           node-version: =${{ env.NODE_V }}
           # node-version: =${ NODE_V }}
           cache: 'npm'
-      # - run: pnpm install
+      # - run: npm install
       - run: npm ci --workspace=${{ env.NAME }}
       - run: npx --workspace=${{ env.NAME }} playwright install --with-deps 
       - run: npm --workspace=${{ env.NAME }} run test
