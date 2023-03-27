@@ -69,12 +69,12 @@ jobs:
     # Deployment ---------------------------------------------
     - name: Deployment
       uses: cloudflare/wrangler-action@2.0.0
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_WORKERS }}
-          # command: publish ./apps/remix/wrangler.toml 
-          # preCommands: npm ci --workspace=remix --omit=dev
-          # preCommands: npm install --workspace=remix --omit=dev
-          # command: publish ./wrangler.toml 
-          workingDirectory: './apps/${{ env.NAME }}'
-          # workingDirectory: './apps/${{ NAME }}'
-          # environment: "production"
+      with:
+        apiToken: ${{ secrets.CLOUDFLARE_WORKERS }}
+        # command: publish ./apps/remix/wrangler.toml 
+        # preCommands: npm ci --workspace=remix --omit=dev
+        # preCommands: npm install --workspace=remix --omit=dev
+        # command: publish ./wrangler.toml 
+        workingDirectory: './apps/${{ env.NAME }}'
+        # workingDirectory: './apps/${{ NAME }}'
+        # environment: "production"
