@@ -10,7 +10,7 @@ on:
 # on: workflow_dispatch:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  tests_e2e:
+  deploy:
     env:
       # Match with Cloudflare Workers Node version
       NODE_V: 16.19.1
@@ -35,21 +35,21 @@ jobs:
     - name: Install Dependencies
       run: npm --workspace=${{ env.NAME }} ci
 
-    - name: (CACHE) Store Playwright's Version
-      run: |
-        PLAYWRIGHT_VERSION=$(npm ls @playwright/test | grep @playwright | sed 's/.*@//')
-        echo "Playwright's Version: $PLAYWRIGHT_VERSION"
-        echo "PLAYWRIGHT_VERSION=$PLAYWRIGHT_VERSION" >> $GITHUB_ENV
+    # - name: (CACHE) Store Playwright's Version
+    #   run: |
+    #     PLAYWRIGHT_VERSION=$(npm ls @playwright/test | grep @playwright | sed 's/.*@//')
+    #     echo "Playwright's Version: $PLAYWRIGHT_VERSION"
+    #     echo "PLAYWRIGHT_VERSION=$PLAYWRIGHT_VERSION" >> $GITHUB_ENV
 
-    - name: (CACHE) Cache Playwright Browsers for Playwright's Version
-      id: cache-playwright-browsers
-      uses: actions/cache@v3
-      with:
-        path: ~/.cache/ms-playwright
-        key: playwright-browsers-${{ env.PLAYWRIGHT_VERSION }}
+    # - name: (CACHE) Cache Playwright Browsers for Playwright's Version
+    #   id: cache-playwright-browsers
+    #   uses: actions/cache@v3
+    #   with:
+    #     path: ~/.cache/ms-playwright
+    #     key: playwright-browsers-${{ env.PLAYWRIGHT_VERSION }}
 
-    - name: Setup Playwright (IF NOT CACHE) 
-      if: steps.cache-playwright-browsers.outputs.cache-hit != 'true'
+    - name: Setup Playwright
+      # if: steps.cache-playwright-browsers.outputs.cache-hit != 'true'
       run: npx --workspace=${{ env.NAME }} playwright install --with-deps 
 
     - name: Build 
@@ -58,23 +58,17 @@ jobs:
     - name: Tests
       run: npm --workspace=${{ env.NAME }} run test
       
-    - name: (CACHE) Store Artifacts from Failed Tests
-      if: failure()
-      uses: actions/upload-artifact@v2
-      with:
-        name: test-results
-        path: test-results/
-        retention-days: 7
+    # - name: (CACHE) Store Artifacts from Failed Tests
+    #   if: failure()
+    #   uses: actions/upload-artifact@v2
+    #   with:
+    #     name: test-results
+    #     path: test-results/
+    #     retention-days: 7
 
     # Deployment ---------------------------------------------
     - name: Deployment
       uses: cloudflare/wrangler-action@2.0.0
       with:
         apiToken: ${{ secrets.CLOUDFLARE_WORKERS }}
-        # command: publish ./apps/remix/wrangler.toml 
-        # preCommands: npm ci --workspace=remix --omit=dev
-        # preCommands: npm install --workspace=remix --omit=dev
-        # command: publish ./wrangler.toml 
         workingDirectory: './apps/${{ env.NAME }}'
-        # workingDirectory: './apps/${{ NAME }}'
-        # environment: "production"
