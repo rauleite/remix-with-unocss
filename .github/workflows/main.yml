@@ -31,12 +31,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '>=18'
-          cache: 'npm'
-      # - name: Install deps
-      #   run: npm install
+      # - uses: actions/setup-node@v3
+      #   with:
+      #     node-version: '>=18'
+      #     cache: 'npm'
+      # # - name: Install deps
+      # #   run: npm install
 
       - name: Path
         run: pwd
@@ -88,7 +88,8 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_WORKERS }}
           # command: publish ./apps/remix/wrangler.toml 
-          preCommands: npm ci --workspace=remix --omit=dev
+          # preCommands: npm ci --workspace=remix --omit=dev
+          preCommands: npm install --workspace=remix --omit=dev
           command: publish ./wrangler.toml 
           postCommands: node -v
           workingDirectory: './apps/remix'
