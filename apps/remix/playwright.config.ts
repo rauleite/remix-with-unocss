@@ -79,7 +79,7 @@ const config: PlaywrightTestConfig = {
 
   /* Run your local dev server before starting the tests */
   webServer: {
-    command: process.env.CI ? `${command.build} && ${command.dev}` : command.dev,
+    command: process.env.CI ? `${commands.build} && ${commands.dev}` : commands.dev,
     url: baseURL,
     timeout: 3 * 60 * 1000,
     reuseExistingServer: !process.env.CI,
