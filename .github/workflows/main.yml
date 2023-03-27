@@ -47,9 +47,9 @@ jobs:
       # run: npm ci
       run: npm --workspace=${{ env.NAME }} ci
 
-    - name: Dev
+    # - name: Dev
       # run: npm ci
-      run: npm --workspace=${{ env.NAME }} run dev
+      # run: npm --workspace=${{ env.NAME }} run dev
         
     - name: Store Playwright's Version
       run: |

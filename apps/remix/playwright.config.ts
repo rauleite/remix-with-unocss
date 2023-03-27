@@ -5,6 +5,11 @@ const PORT = process.env.PORT || 8787;
 
 const baseURL = `http://localhost:${PORT}`;
 
+const commands = {
+  build: "npm --workspace=remix run build",
+  dev: "npm --workspace=remix run dev"
+}
+
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
@@ -74,11 +79,10 @@ const config: PlaywrightTestConfig = {
 
   /* Run your local dev server before starting the tests */
   webServer: {
-    command: "npm --workspace=remix run dev",
+    command: process.env.CI ? `${command.build} && ${command.dev}` : `${command.dev}`,
     url: baseURL,
     timeout: 3 * 60 * 1000,
     reuseExistingServer: !process.env.CI,
   },
 };
-
 export default config;
