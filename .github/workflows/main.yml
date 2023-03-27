@@ -80,10 +80,14 @@ jobs:
       #   run: ls -lha
 
       - name: Install ${{ env.PROJECT_NAME }} workspace
+        run: npm ci --workspace=${{ env.PROJECT_NAME }}
+        # run: npm ci --workspace=${{ env.PROJECT_NAME }} --omit=dev 
         # run: npm --workspace=remix install
-        run: npm ci --workspace=${{ env.PROJECT_NAME }} --omit=dev 
         # run: npm install --omit=dev 
 
+      - name: Build ${{ env.PROJECT_NAME }}
+        run: npm run build --workspace=${{ env.PROJECT_NAME }}
+ 
       # - name: Move Remix app to Root
       #   run: mv apps/remix .. && cd ..
 
