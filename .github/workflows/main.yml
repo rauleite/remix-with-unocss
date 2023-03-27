@@ -28,29 +28,14 @@ jobs:
 
     # - name: Checkout and Node
     - uses: actions/checkout@v3
-    # - uses: npm/action-setup@v2
-    #   with:
-    #     version: latest
-    #     run_install: true
     - uses: actions/setup-node@v3
       with:
         node-version: =${{ env.NODE_V }}
-        # node-version: =${ NODE_V }}
         cache: 'npm'
-    # - run: npm install
-    # - run: npm ci --workspace=${{ env.NAME }}
-    # - run: npx --workspace=${{ env.NAME }} playwright install --with-deps 
-
-
 
     - name: Install Dependencies
-      # run: npm ci
       run: npm --workspace=${{ env.NAME }} ci
 
-    # - name: Dev
-      # run: npm ci
-      # run: npm --workspace=${{ env.NAME }} run dev
-        
     - name: Store Playwright's Version
       run: |
         PLAYWRIGHT_VERSION=$(npm ls @playwright/test | grep @playwright | sed 's/.*@//')
@@ -66,11 +51,12 @@ jobs:
 
     - name: Setup Playwright
       if: steps.cache-playwright-browsers.outputs.cache-hit != 'true'
-      # run: npx playwright install --with-deps
       run: npx --workspace=${{ env.NAME }} playwright install --with-deps 
 
+    - name: Build 
+      run: npm --workspace=${{ env.NAME }} run build 
+
     - name: Run Tests
-      # run: npm run test
       run: npm --workspace=${{ env.NAME }} run test
       
     - name: Store Artifacts from Failed Tests
@@ -81,59 +67,44 @@ jobs:
         path: test-results/
         retention-days: 7
 
+      # Deployment ---------------------------------------
+  # deploy:
+  #   needs: tests_e2e
+    # env:
+    #   NODE_V: 16.19.1
+    #   NAME: remix
+    # runs-on: ubuntu-latest
+    # steps:
+    #   - uses: actions/checkout@v3
+    #   - uses: actions/setup-node@v3
+    #     with:
+    #       node-version: =${{ env.NODE_V }}
+    #       cache: 'npm'
+    #
+      - name: Path
+        run: pwd
 
- #      # - name: Checkout and Node
- #      - uses: actions/checkout@v3
- #      # - uses: npm/action-setup@v2
- #      #   with:
- #      #     version: latest
- #      #     run_install: true
- #      - uses: actions/setup-node@v3
- #        with:
- #          node-version: =${{ env.NODE_V }}
- #          # node-version: =${ NODE_V }}
- #          cache: 'npm'
- #      # - run: npm install
- #      - run: npm ci --workspace=${{ env.NAME }}
- #      - run: npx --workspace=${{ env.NAME }} playwright install --with-deps 
- #      - run: npm --workspace=${{ env.NAME }} run test
- #  # deploy:
- #  #   needs: tests_e2e
- #    # env:
- #    #   NODE_V: 16.19.1
- #    #   NAME: remix
- #    # runs-on: ubuntu-latest
- #    # steps:
- #    #   - uses: actions/checkout@v3
- #    #   - uses: actions/setup-node@v3
- #    #     with:
- #    #       node-version: =${{ env.NODE_V }}
- #    #       cache: 'npm'
- #    #
- #      - name: Path
- #        run: pwd
- #
- #      # - name: Install to workspace
- #      #   run: npm ci --workspace=${{ env.NAME }}
- #        # run: npm ci --workspace=${{ NAME }}
- #        # run: npm ci --workspace=${{ env.NAME }} --omit=dev 
- #        # run: npm --workspace=remix install
- #        # run: npm install --omit=dev 
- #
- #      - name: Build 
- #        run: npm run build --workspace=${{ env.NAME }}
- #        # run: npm run build --workspace=${{ NAME }}
- # 
- #      # - name: Move Remix app to Root
- #      #   run: mv apps/remix .. && cd ..
- #
- #      - uses: cloudflare/wrangler-action@2.0.0
- #        with:
- #          apiToken: ${{ secrets.CLOUDFLARE_WORKERS }}
- #          # command: publish ./apps/remix/wrangler.toml 
- #          # preCommands: npm ci --workspace=remix --omit=dev
- #          # preCommands: npm install --workspace=remix --omit=dev
- #          # command: publish ./wrangler.toml 
- #          workingDirectory: './apps/${{ env.NAME }}'
- #          # workingDirectory: './apps/${{ NAME }}'
- #          # environment: "production"
+      # - name: Install to workspace
+      #   run: npm ci --workspace=${{ env.NAME }}
+        # run: npm ci --workspace=${{ NAME }}
+        # run: npm ci --workspace=${{ env.NAME }} --omit=dev 
+        # run: npm --workspace=remix install
+        # run: npm install --omit=dev 
+
+      - name: Build 
+        run: npm run build --workspace=${{ env.NAME }}
+        # run: npm run build --workspace=${{ NAME }}
+
+      # - name: Move Remix app to Root
+      #   run: mv apps/remix .. && cd ..
+
+      - uses: cloudflare/wrangler-action@2.0.0
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_WORKERS }}
+          # command: publish ./apps/remix/wrangler.toml 
+          # preCommands: npm ci --workspace=remix --omit=dev
+          # preCommands: npm install --workspace=remix --omit=dev
+          # command: publish ./wrangler.toml 
+          workingDirectory: './apps/${{ env.NAME }}'
+          # workingDirectory: './apps/${{ NAME }}'
+          # environment: "production"
