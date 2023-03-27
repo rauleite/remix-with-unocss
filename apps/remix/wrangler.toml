@@ -14,6 +14,6 @@ compatibility_date = "2023-03-26"
 [site]
   bucket = "./public"
 
-[build]
-  command = "npm run build"
+# [build]
+#   command = "npm run build"
 

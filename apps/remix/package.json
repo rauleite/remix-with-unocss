@@ -12,11 +12,11 @@
     "dev:css": "npm run generate:css --watch",
     "dev:remix": "remix watch",
     "dev:miniflare": "cross-env NODE_ENV=development miniflare ./build/index.js --watch",
-    "generate:css": "npx unocss './app/**/*.{js,ts,jsx,tsx}' -o ./app/styles/uno.css",
+    "generate:css": "unocss './app/**/*.{js,ts,jsx,tsx}' -o ./app/styles/uno.css",
     "start": "cross-env NODE_ENV=production miniflare ./build/index.js",
     "test": "playwright test",
     "typecheck": "tsc",
-    "log": "npm run '/^log:.*/'",
+    "log": "concurrently 'npm:log:*'",
     "log:deploy": "wrangler tail"
   },
   "dependencies": {
