@@ -51,7 +51,7 @@ jobs:
         run: pwd
 
       - name: List
-        run: ls
+        run: ls -lha
 
       - name: Remove all on root
         run: mv -f -t . ./apps/remix/* || true 
@@ -63,7 +63,7 @@ jobs:
         run: pwd
 
       - name: List
-        run: ls
+        run: ls -lha
 
       - name: Remove residual apps dir
         run: rm -r apps
@@ -72,7 +72,7 @@ jobs:
         run: pwd
 
       - name: List
-        run: ls
+        run: ls -lha
 
       - name: Install only the remix workspace
         # run: npm --workspace=remix install
