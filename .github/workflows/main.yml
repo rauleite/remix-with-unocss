@@ -41,19 +41,22 @@ jobs:
       - name: Path
         run: pwd
 
-      - name: cd
-        run: cd apps/remix
+      - name: List
+        run: ls
 
-      - name: Path post
+      - name: Remix app to root
+        run: find . ! -name 'file.txt' -type f -exec rm -f {} +
+
+      - name: Path
         run: pwd
-
 
       - name: List
         run: ls
 
       - name: Install only the remix workspace
         # run: npm --workspace=remix install
-        run: npm --workspace=remix ci --omit=dev 
+        # run: npm --workspace=remix ci --omit=dev 
+        run: npm install --omit=dev 
 
       # - name: Move Remix app to Root
       #   run: mv apps/remix .. && cd ..
