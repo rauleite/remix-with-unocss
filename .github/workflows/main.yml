@@ -81,30 +81,30 @@ jobs:
     #       node-version: =${{ env.NODE_V }}
     #       cache: 'npm'
     #
-      - name: Path
-        run: pwd
+    - name: Path
+      run: pwd
 
-      # - name: Install to workspace
-      #   run: npm ci --workspace=${{ env.NAME }}
-        # run: npm ci --workspace=${{ NAME }}
-        # run: npm ci --workspace=${{ env.NAME }} --omit=dev 
-        # run: npm --workspace=remix install
-        # run: npm install --omit=dev 
+    # - name: Install to workspace
+    #   run: npm ci --workspace=${{ env.NAME }}
+      # run: npm ci --workspace=${{ NAME }}
+      # run: npm ci --workspace=${{ env.NAME }} --omit=dev 
+      # run: npm --workspace=remix install
+      # run: npm install --omit=dev 
 
-      - name: Build 
-        run: npm run build --workspace=${{ env.NAME }}
-        # run: npm run build --workspace=${{ NAME }}
+    - name: Build 
+      run: npm run build --workspace=${{ env.NAME }}
+      # run: npm run build --workspace=${{ NAME }}
 
-      # - name: Move Remix app to Root
-      #   run: mv apps/remix .. && cd ..
+    # - name: Move Remix app to Root
+    #   run: mv apps/remix .. && cd ..
 
-      - uses: cloudflare/wrangler-action@2.0.0
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_WORKERS }}
-          # command: publish ./apps/remix/wrangler.toml 
-          # preCommands: npm ci --workspace=remix --omit=dev
-          # preCommands: npm install --workspace=remix --omit=dev
-          # command: publish ./wrangler.toml 
-          workingDirectory: './apps/${{ env.NAME }}'
-          # workingDirectory: './apps/${{ NAME }}'
-          # environment: "production"
+    - uses: cloudflare/wrangler-action@2.0.0
+      with:
+        apiToken: ${{ secrets.CLOUDFLARE_WORKERS }}
+        # command: publish ./apps/remix/wrangler.toml 
+        # preCommands: npm ci --workspace=remix --omit=dev
+        # preCommands: npm install --workspace=remix --omit=dev
+        # command: publish ./wrangler.toml 
+        workingDirectory: './apps/${{ env.NAME }}'
+        # workingDirectory: './apps/${{ NAME }}'
+        # environment: "production"
