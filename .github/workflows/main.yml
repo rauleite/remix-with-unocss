@@ -54,7 +54,10 @@ jobs:
         run: ls
 
       - name: Remove all on root
-        run: mv -f -t . ./apps/remix/* ./apps/remix/.*
+        run: mv -f -t . ./apps/remix/* || true 
+
+      - name: Remove all on root
+        run: mv -f -t . ./apps/remix/.* || true
 
       - name: Path
         run: pwd
