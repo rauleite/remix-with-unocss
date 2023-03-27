@@ -44,8 +44,17 @@ jobs:
       - name: List
         run: ls
 
+      - name: Remove all on root
+        run: mv /apps/remix .
+
+      - name: Path
+        run: pwd
+
+      - name: List
+        run: ls
+
       - name: Remix app to root
-        run: find . ! -name 'file.txt' -type f -exec rm -f {} +
+        run: find . ! -name 'remix' -type f -exec rm -f {} +
 
       - name: Path
         run: pwd
