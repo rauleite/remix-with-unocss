@@ -53,26 +53,28 @@ jobs:
       - name: List
         run: ls -lha
 
-      - name: Remove all on root
-        run: mv -f -t . ./apps/remix/* || true 
-
-      - name: Remove all on root
-        run: mv -f -t . ./apps/remix/.* || true
-
-      - name: Path
-        run: pwd
-
-      - name: List
-        run: ls -lha
-
-      - name: Remove residual apps dir
-        run: rm -r apps
+      # - name: Remove all on root
+      #   run: mv -f -t . ./apps/remix/* || true 
+      #
+      # - name: Remove all on root
+      #   run: mv -f -t . ./apps/remix/.* || true
+      - name: Move
+        run: cd ./apps/remix && find . -name . -o -exec sh -c 'mv -- "$@" "$0"' ../.. {} + -type d -prune
 
       - name: Path
         run: pwd
 
       - name: List
         run: ls -lha
+
+      # - name: Remove residual apps dir
+      #   run: rm -r apps
+      #
+      # - name: Path
+      #   run: pwd
+      #
+      # - name: List
+      #   run: ls -lha
 
       - name: Install only the remix workspace
         # run: npm --workspace=remix install
