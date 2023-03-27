@@ -41,31 +41,31 @@ jobs:
       - name: Path
         run: pwd
 
-      - name: List
-        run: ls
-
-      - name: Remix app to root
-        run: find . ! -name 'apps' -type f -exec rm -f {} +
-
-      - name: Path
-        run: pwd
-
-      - name: List
-        run: ls -lha
-
-      # - name: Remove all on root
-      #   run: mv -f -t . ./apps/remix/* || true 
+      # - name: List
+      #   run: ls
       #
-      # - name: Remove all on root
-      #   run: mv -f -t . ./apps/remix/.* || true
-      - name: Move
-        run: cd ./apps/remix && find . -name . -o -exec sh -c 'mv -- "$@" "$0"' ../.. {} + -type d -prune
-
-      - name: Path
-        run: pwd
-
-      - name: List
-        run: ls -lha package.json
+      # - name: Remix app to root
+      #   run: find . ! -name 'apps' -type f -exec rm -f {} +
+      #
+      # - name: Path
+      #   run: pwd
+      #
+      # - name: List
+      #   run: ls -lha
+      #
+      # # - name: Remove all on root
+      # #   run: mv -f -t . ./apps/remix/* || true 
+      # #
+      # # - name: Remove all on root
+      # #   run: mv -f -t . ./apps/remix/.* || true
+      # - name: Move
+      #   run: cd ./apps/remix && find . -name . -o -exec sh -c 'mv -- "$@" "$0"' ../.. {} + -type d -prune
+      #
+      # - name: Path
+      #   run: pwd
+      #
+      # - name: List
+      #   run: ls -lha package.json
 
       # - name: Remove residual apps dir
       #   run: rm -r apps
@@ -78,8 +78,8 @@ jobs:
 
       - name: Install only the remix workspace
         # run: npm --workspace=remix install
-        # run: npm --workspace=remix ci --omit=dev 
-        run: npm install --omit=dev 
+        run: npm ci --workspace=remix --omit=dev 
+        # run: npm install --omit=dev 
 
       # - name: Move Remix app to Root
       #   run: mv apps/remix .. && cd ..
@@ -87,5 +87,7 @@ jobs:
       - uses: cloudflare/wrangler-action@2.0.0
         with:
           apiToken: ${{ secrets.CLOUDFLARE_WORKERS }}
-          command: publish ./apps/remix/wrangler.toml 
+          # command: publish ./apps/remix/wrangler.toml 
+          command: publish ./wrangler.toml 
+          workingDirectory: './apps/remix'
           # environment: "production"
