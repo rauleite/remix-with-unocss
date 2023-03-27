@@ -7,49 +7,55 @@ on:
   push:
     branches: 
      - main
+env:
+  NODE_V: 16.19.1
+  PROJECT_NAME: remix
 # on: workflow_dispatch:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # tests_e2e:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     # - name: Checkout and Node
-  #     - uses: actions/checkout@v3
-  #     - uses: pnpm/action-setup@v2
-  #       with:
-  #         version: latest
-  #         run_install: true
-  #     - uses: actions/setup-node@v3
-  #       with:
-  #         node-version: '>=18'
-  #         cache: 'pnpm'
-  #     # - run: pnpm install
-  #     - run: pnpm dlx playwright install --with-deps
-  #    - run: pnpm run test
-  deploy:
-    # needs: tests_e2e
-    env:
-      NODE_V: 16.19.1
-      PROJECT_NAME: remix
+  tests_e2e:
     runs-on: ubuntu-latest
     steps:
+      # - name: Checkout and Node
       - uses: actions/checkout@v3
+      # - uses: pnpm/action-setup@v2
+      #   with:
+      #     version: latest
+      #     run_install: true
       - uses: actions/setup-node@v3
         with:
-          node-version: =${{ env.NODE_V }}
+          # node-version: =${{ env.NODE_V }}
+          node-version: =${{ NODE_V }}
           cache: 'npm'
-
+      # - run: pnpm install
+      - run: npx playwright install --with-deps
+      - run: npm run test
+  # deploy:
+  #   needs: tests_e2e
+    # env:
+    #   NODE_V: 16.19.1
+    #   PROJECT_NAME: remix
+    # runs-on: ubuntu-latest
+    # steps:
+    #   - uses: actions/checkout@v3
+    #   - uses: actions/setup-node@v3
+    #     with:
+    #       node-version: =${{ env.NODE_V }}
+    #       cache: 'npm'
+    #
       - name: Path
         run: pwd
 
-      - name: Install ${{ env.PROJECT_NAME }} workspace
-        run: npm ci --workspace=${{ env.PROJECT_NAME }}
+      - name: Install to workspace
+        # run: npm ci --workspace=${{ env.PROJECT_NAME }}
+        run: npm ci --workspace=${{ PROJECT_NAME }}
         # run: npm ci --workspace=${{ env.PROJECT_NAME }} --omit=dev 
         # run: npm --workspace=remix install
         # run: npm install --omit=dev 
 
-      - name: Build ${{ env.PROJECT_NAME }}
-        run: npm run build --workspace=${{ env.PROJECT_NAME }}
+      - name: Build 
+        # run: npm run build --workspace=${{ env.PROJECT_NAME }}
+        run: npm run build --workspace=${{ PROJECT_NAME }}
  
       # - name: Move Remix app to Root
       #   run: mv apps/remix .. && cd ..
@@ -61,6 +67,6 @@ jobs:
           # preCommands: npm ci --workspace=remix --omit=dev
           # preCommands: npm install --workspace=remix --omit=dev
           # command: publish ./wrangler.toml 
-          workingDirectory: './apps/${{ env.PROJECT_NAME }}'
+          # workingDirectory: './apps/${{ env.PROJECT_NAME }}'
+          workingDirectory: './apps/${{ PROJECT_NAME }}'
           # environment: "production"
-

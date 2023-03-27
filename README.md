@@ -1,4 +1,6 @@
 # Welcome
+Monorepo Remix app with deployment to Cloudflare Workers
+
 ### Stack
 #### Styling
 - UnoCSS
@@ -9,53 +11,57 @@
 #### Deployment
 - Cloudflare Workers
 #### Database
-- D1 (Alpha - Testing alternatives also)
-- KV (maybe)
-- DO (maybe)
+- D1 (Alpha - Tests alternatives also)
+- KV 
+- DO 
 #### Testing 
 - Playwright
 - Github Actions
+#### Toolings
+- Github Actions (automated tests and deploys)
+- Turborepo
+- Wrangler
 
-## Development
-
+### Development
 You will be running two processes during development:
-
-- The Miniflare server (miniflare is a local environment for Cloudflare Workers)
-- The Remix development server
-
-Both are started with one command:
-
+The Remix custom server with Miniflare (local environment for Cloudflare Workers)
 ```sh
-pnpm run dev
+npm run dev
 ```
-
-Open up [http://127.0.0.1:8787](http://127.0.0.1:8787) and you should be ready to go!
+Open up [local server](http://127.0.0.1:8787) and you should be ready to go!
 
 If you want to check the production build, you can stop the dev server and run following commands:
 
 ```sh
-pnpm run build
-pnpm start
+npm run build
+npm start
 ```
-
 Then refresh the same URL in your browser (no live reload for production builds).
 
 ## Deployment
 
-If you don't already have an account, then [create a cloudflare account here](https://dash.cloudflare.com/sign-up) and after verifying your email address with Cloudflare, go to your dashboard and set up your free custom Cloudflare Workers subdomain.
-
-Once that's done, you should be able to deploy your app:
+### Github Actions
+It makes the build and wrangler's deploy on Gitbhub Actions, after modifications push ([main.yml](https://github.com/rauleite/remix/blob/main/.github/workflows/main.yml))
 
 ```sh
-pnpm run deploy
+git push
 ```
+[Project actions](https://github.com/rauleite/remix/actions)
 
-# Dependencies
+# Throbleshooting
+## End of Space 
+Error: ENOSPC: System limit for number of file watchers reached, watch '/home/raul/dev/remix/apps/remix/unocss.config.ts'
+
+```bash
+echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+```
+P.S. The ideal is to investigate the cause (probabily some watch mode reading the node_modules, and should be set to igore it)
+
+# Dependencies integrated
 Dependencies integrated at remix project
 [example repo](https://github.com/remix-run/examples/tree/main/unocss)
 
 # Remix + UnoCSS
-
 UnoCSS is the instant, on-demand atomic CSS engine. It has various advantages over Tailwind CSS. Read more in the [GitHub readme](https://github.com/unocss/unocss).
 
 ## Preview
@@ -82,13 +88,4 @@ You can add more presets in [`unocss.config.ts`](./unocss.config.ts).
 
 - [UnoCSS GitHub](https://github.com/unocss/unocss)
 - [UnoCSS Docs](https://uno.antfu.me)
-
-# Throbleshooting
-## End of Space 
-Error: ENOSPC: System limit for number of file watchers reached, watch '/home/raul/dev/remix/apps/remix/unocss.config.ts'
-
-```bash
-echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
-```
-P.S. The ideal is to investigate the cause (probabily some watch mode reading the node_modules, and should be set to igore it)
 
