@@ -35,7 +35,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: =${{ NODE_V }}
+          node-version: =${{ env.NODE_V }}
           cache: 'npm'
       # - name: Install deps
       #   run: npm install
