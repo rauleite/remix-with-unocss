@@ -26,11 +26,21 @@ jobs:
         key: node-modules-${{ hashFiles('package-lock.json') }}
 
 
+    # - name: Checkout and Node
+    - uses: actions/checkout@v3
+    # - uses: npm/action-setup@v2
+    #   with:
+    #     version: latest
+    #     run_install: true
     - uses: actions/setup-node@v3
       with:
         node-version: =${{ env.NODE_V }}
         # node-version: =${ NODE_V }}
         cache: 'npm'
+    # - run: npm install
+    # - run: npm ci --workspace=${{ env.NAME }}
+    # - run: npx --workspace=${{ env.NAME }} playwright install --with-deps 
+
 
 
     - name: Install Dependencies
