@@ -9,7 +9,7 @@ compatibility_date = "2023-03-26"
 # https://developers.cloudflare.com/workers/platform/compatibility-dates/#streams-constructors
 # compatibility_flags = ["streams_enable_constructors"]
 [env.production.vars]
-NODE_VERSION = "18.15.0"
+# NODE_VERSION = "18.15.0"
 
 [site]
   bucket = "./public"

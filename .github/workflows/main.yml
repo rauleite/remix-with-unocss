@@ -90,5 +90,6 @@ jobs:
           # command: publish ./apps/remix/wrangler.toml 
           preCommands: npm ci --workspace=remix --omit=dev
           command: publish ./wrangler.toml 
+          postCommands: node -v
           workingDirectory: './apps/remix'
           # environment: "production"
