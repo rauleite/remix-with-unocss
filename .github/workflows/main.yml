@@ -45,8 +45,12 @@ jobs:
 
     - name: Install Dependencies
       # run: npm ci
-      run: npm ci --workspace=${{ env.NAME }}
+      run: npm --workspace=${{ env.NAME }} ci
 
+    - name: Dev
+      # run: npm ci
+      run: npm --workspace=${{ env.NAME }} run dev
+        
     - name: Store Playwright's Version
       run: |
         PLAYWRIGHT_VERSION=$(npm ls @playwright/test | grep @playwright | sed 's/.*@//')
