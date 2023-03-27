@@ -69,7 +69,6 @@ const config: PlaywrightTestConfig = {
       },
     },
   ],
-
   /* Folder for test artifacts such as screenshots, videos, traces, etc. */
   // outputDir: 'test-results/',
 
@@ -77,6 +76,7 @@ const config: PlaywrightTestConfig = {
   webServer: {
     command: "npm --workspace=remix run dev",
     url: baseURL,
+    timeout: 3 * 60 * 1000,
     reuseExistingServer: !process.env.CI,
   },
 };
