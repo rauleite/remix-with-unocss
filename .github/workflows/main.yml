@@ -45,7 +45,7 @@ jobs:
         run: ls
 
       - name: Remove all on root
-        run: mv /apps/remix .
+        run: mv ./apps/remix .
 
       - name: Path
         run: pwd
