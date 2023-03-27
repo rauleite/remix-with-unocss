@@ -65,7 +65,7 @@ jobs:
         run: pwd
 
       - name: List
-        run: ls -lha
+        run: ls -lha package.json
 
       # - name: Remove residual apps dir
       #   run: rm -r apps
