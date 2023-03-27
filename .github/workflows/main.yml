@@ -28,6 +28,7 @@ jobs:
           # node-version: =${ NODE_V }}
           cache: 'npm'
       # - run: pnpm install
+      - run: npm ci --workspace=${{ env.NAME }}
       - run: npx --workspace=${{ env.NAME }} playwright install --with-deps 
       - run: npm --workspace=${{ env.NAME }} run test
   # deploy:
@@ -46,8 +47,8 @@ jobs:
       - name: Path
         run: pwd
 
-      - name: Install to workspace
-        run: npm ci --workspace=${{ env.NAME }}
+      # - name: Install to workspace
+      #   run: npm ci --workspace=${{ env.NAME }}
         # run: npm ci --workspace=${{ NAME }}
         # run: npm ci --workspace=${{ env.NAME }} --omit=dev 
         # run: npm --workspace=remix install
